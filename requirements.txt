@@ -43,15 +43,12 @@ pytest==7.1.2
 python-lsp-jsonrpc==1.0.0
 PyYAML==6.0
 queuelib==1.5.0
-regex @ file:///C:/ci/regex_1658258307256/work
-requests @ file:///C:/ci/requests_1657735342357/work
-requests-file @ file:///Users/ktietz/demo/mc3/conda-bld/requests-file_1629455781986/work
+requests
 rich==13.3.5
-scikit-image @ file:///C:/ci/scikit-image_1648214340990/work
 scikit-learn==1.2.2
 scikit-learn-intelex==2021.20221004.171935
 scipy==1.9.1
-seaborn @ file:///tmp/build/80754af9/seaborn_1629307859561/work
+seaborn
 sip==4.19.13
 smmap==5.0.0
 statsmodels==0.13.2
