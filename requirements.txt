@@ -1,7 +1,6 @@
 streamlit
 streamlit_lottie
 altair==4.2.2
-anaconda-client==1.11.0
 anaconda-navigator==2.3.2
 appdirs==1.4.4
 conda==22.9.0
