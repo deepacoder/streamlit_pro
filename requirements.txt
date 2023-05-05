@@ -8,7 +8,6 @@ jupyterlab==3.4.4
 requests==2.26.0
 pip:
 streamlit
-scikit-learn==1.0.2
-sklearn==0.0
-
+sklearn
+lottie
 
