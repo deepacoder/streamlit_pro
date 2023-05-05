@@ -58,7 +58,6 @@ statsmodels==0.13.2
 streamlit==1.22.0
 streamlit-lottie==0.0.3
 typeguard==2.13.3
-typing_extensions @ 
 visions==0.7.5
 webencodings==0.5.1
 win-unicode-console==0.5
