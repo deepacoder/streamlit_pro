@@ -6,7 +6,6 @@ pip==21.2.4
 pickle5==0.0.12
 jupyterlab==3.4.4
 requests==2.26.0
-pip:
 streamlit
 sklearn
 lottie
