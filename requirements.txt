@@ -1,13 +1,13 @@
 streamlit
 streamlit_lottie
 altair==4.2.2
-anaconda-navigator==2.3.2
 appdirs==1.4.4
 conda==22.9.0
 conda-build==3.22.0
 conda-repo-cli==1.0.20
 conda-verify==3.4.2
 constantly==15.1.0
+clyent=1.2.0
 gitdb==4.0.10
 GitPython==3.1.31
 htmlmin==0.1.12
