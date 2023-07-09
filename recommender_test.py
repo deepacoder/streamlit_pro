@@ -12,8 +12,8 @@ import pickle
 import pandas as pd
 
 def get_movie_recommendation(movie_name, n):
-    movies = pd.read_csv("WBSdirectory/movies.csv")
-    ratings = pd.read_csv("WBSdirectory/ratings.csv")
+    movies = pd.read_csv("movies.csv")
+    ratings = pd.read_csv("ratings.csv")
     #datacleaning
     for column in movies:
         if column == 'title':
