@@ -1,29 +1,19 @@
 import streamlit as st
-from streamlit_lottie import st_lottie
-from streamlit_lottie import st_lottie_spinner
 import requests
-
-def load_lottieurl(url="https://assets6.lottiefiles.com/packages/lf20_khzniaya.json"):
-    r = requests.get(url)
-    if r.status_code != 200:
-        return None
-    return r.json()
-
-lottie_url = "https://assets6.lottiefiles.com/packages/lf20_khzniaya.json"
-lottie_json = load_lottieurl(lottie_url)
-st_lottie(lottie_json)
 
 st.title("Recommender Systems")
  
 st.write("""
 ### Project description
-Creating movie recommendations based on Machine Learning using Item Based Collaborative filtering and User Based Collaborative filtering. """)
+Creating movie recommendations based on Machine Learning using Item Based Collaborative filtering. """)
 
 import os
 import pickle
 import pandas as pd
 
-def get_movie_recommendation(movies, ratings, movie_name, n):
+def get_movie_recommendation(movie_name, n):
+    movies = pd.read_csv("WBSdirectory/movies.csv")
+    ratings = pd.read_csv("WBSdirectory/ratings.csv")
     #datacleaning
     for column in movies:
         if column == 'title':
@@ -52,15 +42,10 @@ def get_movie_recommendation(movies, ratings, movie_name, n):
 
 # some code to get user input and data
 movie_name = st.text_input("Enter a movie title")
-movies = pd.read_csv("movies.csv")
-ratings = pd.read_csv("ratings.csv")
 n =  st.number_input("Enter the number of recommendations", min_value=1, max_value=10, value=5, step=1)
-
-
 # use the get_movie_recommendation function to get recommendations
 recommendations = get_movie_recommendation(movies, ratings, movie_name, n)
-    
-
+ 
 # display the recommendations
 st.write("Here are some movies you might like:")
 st.table(recommendations)
