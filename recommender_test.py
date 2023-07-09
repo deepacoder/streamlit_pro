@@ -44,7 +44,7 @@ def get_movie_recommendation(movie_name, n):
 movie_name = st.text_input("Enter a movie title")
 n =  st.number_input("Enter the number of recommendations", min_value=1, max_value=10, value=5, step=1)
 # use the get_movie_recommendation function to get recommendations
-recommendations = get_movie_recommendation(movies, ratings, movie_name, n)
+recommendations = get_movie_recommendation(movie_name, n)
  
 # display the recommendations
 st.write("Here are some movies you might like:")
