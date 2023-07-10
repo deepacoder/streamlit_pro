@@ -1,19 +1,20 @@
 import streamlit as st
-import requests
 
 st.title("Recommender Systems")
  
 st.write("""
 ### Project description
-Creating movie recommendations based on Machine Learning using Item Based Collaborative filtering. """)
+Creating movie recommendations based on Machine Learning using Item Based filtering. """)
 
-import os
 import pickle
 import pandas as pd
 
+with open('recommendersys.pkl', 'rb') as f:
+    loaded_model = pickle.load(f)
+
 def get_movie_recommendation(movie_name, n):
-    movies = pd.read_csv("movies.csv")
-    ratings = pd.read_csv("ratings.csv")
+    movies = pd.read_csv("WBSdirectory/movies.csv")
+    ratings = pd.read_csv("WBSdirectory/ratings.csv")
     #datacleaning
     for column in movies:
         if column == 'title':
@@ -30,22 +31,21 @@ def get_movie_recommendation(movie_name, n):
     avgratings_df = pd.DataFrame(data=movies_ratings_df.groupby('name')['rating'].mean())
     avgratings_df['count'] = movies_ratings_df.groupby('name')['rating'].count()
     #create pivot table
-    user_movie_matrix = movies_ratings_df.pivot_table(index='userId', columns ='name',     values='rating')
+    user_movie_matrix = movies_ratings_df.pivot_table(index='userId', columns ='name', values='rating')
     #get similar movies
-    movie_to_compare = user_movie_matrix.loc[:, movie_name]
+    movie_to_compare = user_movie_matrix[movie_name]
     similar_movies = user_movie_matrix.corrwith(movie_to_compare)
     corr_movies = pd.DataFrame(data=similar_movies, columns=['correlation'])
     corr_movies.dropna(inplace=True)
     corr_movies = corr_movies.join(avgratings_df['count'])
-    top10_corr = corr_movies[corr_movies['correlation']>=0.8].sort_values('count',       ascending=False).head(n)
-    return top10_corr
-
+    top_recs = corr_movies[corr_movies['correlation']>=0.8].sort_values('count',ascending=False).head(n)
+    return top_recs
 # some code to get user input and data
 movie_name = st.text_input("Enter a movie title")
 n =  st.number_input("Enter the number of recommendations", min_value=1, max_value=10, value=5, step=1)
+
 # use the get_movie_recommendation function to get recommendations
 recommendations = get_movie_recommendation(movie_name, n)
- 
 # display the recommendations
 st.write("Here are some movies you might like:")
 st.table(recommendations)
